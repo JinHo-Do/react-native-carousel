@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
 import styled from 'styled-components/native';
 
-import { CarouselList } from '../../components/Carousel';
+import CarouselListContainer from '../CarouselListContainer';
 
 export {
   default as CarouselImage,
 } from '../../components/Carousel/CarouselImageItem';
 
 const StyledView = styled.View`
+  position: relative;
   width: 100%;
   height: auto;
+  background-color: #ff5400;
 `;
 
 class CarouselContainer extends Component {
@@ -18,7 +20,7 @@ class CarouselContainer extends Component {
 
     return (
       <StyledView>
-        <CarouselList>{children}</CarouselList>
+        <CarouselListContainer>{children}</CarouselListContainer>
       </StyledView>
     );
   }
