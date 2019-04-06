@@ -1,16 +1,13 @@
 import React from 'react';
-import { Dimensions } from 'react-native';
 import styled from 'styled-components/native';
 import uuid from 'uuid/v4';
 
 import Indicator from './Indicator';
 
-const { width } = Dimensions.get('window');
-
 const StyledView = styled.View`
   position: absolute;
   top: 80px;
-  left: ${width / 2 - width * 0.15};
+  left: ${({ deviceWidth }) => deviceWidth / 2 - deviceWidth * 0.15};
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -19,14 +16,14 @@ const StyledView = styled.View`
   height: 10px;
 `;
 
-const index = ({ length, index }) => {
+const index = ({ length, index, deviceWidth }) => {
   const Indicators = Array(length)
-    .fill(0)
+    .fill(null)
     .map((item, i) => {
       return <Indicator key={uuid()} index={i} selected={index} />;
     });
 
-  return <StyledView>{Indicators}</StyledView>;
+  return <StyledView deviceWidth={deviceWidth}>{Indicators}</StyledView>;
 };
 
 export default index;

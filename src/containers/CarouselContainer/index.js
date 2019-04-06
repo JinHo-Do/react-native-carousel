@@ -1,6 +1,6 @@
 import React, { Component, createRef } from 'react';
-import { Dimensions } from 'react-native';
 import styled from 'styled-components/native';
+import { deviceWidth, deviceHeight } from '../../utils/dimensions';
 
 import {
   CarouselPrevButton,
@@ -10,10 +10,13 @@ import {
 
 export {
   default as CarouselImage,
-} from '../../components/Carousel/CarouselImageItem';
+} from '../../components/Carousel/CarouselImage';
+
+export {
+  default as CarouselView,
+} from '../../components/Carousel/CarouselView';
 
 const StyledView = styled.View`
-  position: relative;
   width: 100%;
   height: auto;
 `;
@@ -23,8 +26,6 @@ const StyledScrollView = styled.ScrollView`
   width: 100%;
   height: auto;
 `;
-
-const { width } = Dimensions.get('window');
 
 class index extends Component {
   state = {
@@ -37,9 +38,11 @@ class index extends Component {
   componentDidMount() {
     const { children } = this.props;
 
-    this.setState({
-      length: children.length,
-    });
+    if (children) {
+      this.setState({
+        length: children.length,
+      });
+    }
   }
 
   shouldComponentUpdate(nextProps, nextState) {
@@ -67,7 +70,7 @@ class index extends Component {
         },
         () => {
           const { index } = this.state;
-          current.scrollTo({ x: index * width });
+          current.scrollTo({ x: index * deviceWidth });
         },
       );
     }
@@ -83,15 +86,14 @@ class index extends Component {
       },
       () => {
         const { index } = this.state;
-        current.scrollTo({ x: index * width });
+        current.scrollTo({ x: index * deviceWidth });
       },
     );
   };
 
   handleScroll = e => {
     const scrolledValue = e.nativeEvent.contentOffset.x;
-
-    const page = Math.round(scrolledValue / width);
+    const page = Math.round(scrolledValue / deviceWidth);
 
     this.setState({
       index: page,
@@ -114,13 +116,23 @@ class index extends Component {
         >
           {children}
         </StyledScrollView>
-        {children.length && (
+        {children && children.length && (
           <>
-            <CarouselPrevButton onPress={onPressPrevBtn} />
-            <CarouselNextButton onPress={onPressNextBtn} />
+            <CarouselPrevButton
+              onPress={onPressPrevBtn}
+              deviceHeight={deviceHeight}
+            />
+            <CarouselNextButton
+              onPress={onPressNextBtn}
+              deviceHeight={deviceHeight}
+            />
           </>
         )}
-        <CarouselIndicator length={length} index={index} />
+        <CarouselIndicator
+          length={length}
+          index={index}
+          deviceWidth={deviceWidth}
+        />
       </StyledView>
     );
   }
