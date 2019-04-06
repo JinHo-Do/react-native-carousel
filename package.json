@@ -14,7 +14,8 @@
     "react-native-vector-icons": "^6.4.2",
     "redux-actions": "^2.6.5",
     "redux-devtools-extension": "^2.13.8",
-    "styled-components": "^4.2.0"
+    "styled-components": "^4.2.0",
+    "uuid": "^3.3.2"
   },
   "devDependencies": {
     "@babel/core": "^7.4.3",
