@@ -91,15 +91,11 @@ class index extends Component {
   handleScroll = e => {
     const scrolledValue = e.nativeEvent.contentOffset.x;
 
-    if (scrolledValue !== 0 && scrolledValue % width === 0) {
-      this.setState({
-        index: scrolledValue / width,
-      });
-    } else if (scrolledValue === 0) {
-      this.setState({
-        index: 0,
-      });
-    }
+    const page = Math.round(scrolledValue / width);
+
+    this.setState({
+      index: page,
+    });
   };
 
   render() {
@@ -113,6 +109,7 @@ class index extends Component {
           ref={scroll}
           horizontal
           pagingEnabled
+          showsHorizontalScrollIndicator={false}
           onMomentumScrollEnd={handleScroll}
         >
           {children}
