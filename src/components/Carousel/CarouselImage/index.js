@@ -1,7 +1,6 @@
 import React from 'react';
-import { StyleSheet, Image, Dimensions } from 'react-native';
-
-const { width, height } = Dimensions.get('window');
+import { StyleSheet, Image } from 'react-native';
+import { deviceWidth, deviceHeight } from '../../../utils/dimensions';
 
 const index = ({ url }) => (
   <Image
@@ -16,8 +15,8 @@ const index = ({ url }) => (
 const styles = StyleSheet.create({
   image: {
     flex: 1,
-    width,
-    height,
+    width: deviceWidth,
+    height: deviceHeight,
   },
 });
 

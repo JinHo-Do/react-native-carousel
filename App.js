@@ -3,7 +3,10 @@ import styled from 'styled-components/native';
 
 import Carousel, {
   CarouselImage,
-} from './src/containers/CarouselContainer/index';
+  CarouselView,
+} from './src/containers/CarouselContainer';
+
+import ViewExample from './src/components/ViewExample';
 
 const StyledView = styled.View`
   display: flex;
@@ -19,6 +22,10 @@ export default class App extends Component {
     return (
       <StyledView>
         <Carousel>
+          <CarouselView>
+            <ViewExample />
+          </CarouselView>
+
           <CarouselImage url="https://cdn.pixabay.com/photo/2015/07/21/15/19/koala-854021_1280.jpg" />
           <CarouselImage url="https://cdn.pixabay.com/photo/2015/05/15/14/42/monkeys-768641_1280.jpg" />
           <CarouselImage url="https://cdn.pixabay.com/photo/2017/10/12/10/37/beautiful-2844189__480.jpg" />
