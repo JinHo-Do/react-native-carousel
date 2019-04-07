@@ -6,7 +6,7 @@
 
 ## Show Case
 
-![DEMO](https://s3.ap-northeast-2.amazonaws.com/gurmbyh/demo.gif)
+![DEMO](/media/demo.gif)
 
 ## Usage
 
