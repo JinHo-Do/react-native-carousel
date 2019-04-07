@@ -102,7 +102,7 @@ class index extends Component {
     });
 
     this.interval = setInterval(() => {
-      this.onPressNextBtn(null, false);
+      this.onPressNextBtn(null, true);
     }, time);
   };
 
@@ -134,11 +134,11 @@ class index extends Component {
     }
   };
 
-  onPressNextBtn = (e, checkAuto = true) => {
+  onPressNextBtn = (e, isAutoSlide = false) => {
     const { index, length } = this.state;
     const { current } = this.scroll;
 
-    if (checkAuto) {
+    if (!isAutoSlide) {
       this.removeAutoSlide();
     }
 
