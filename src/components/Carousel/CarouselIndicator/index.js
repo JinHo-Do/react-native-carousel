@@ -16,11 +16,18 @@ const StyledView = styled.View`
   height: 10px;
 `;
 
-const index = ({ length, index, deviceWidth }) => {
+const index = ({ length, index, deviceWidth, onPressIndicator }) => {
   const Indicators = Array(length)
     .fill(null)
     .map((item, i) => {
-      return <Indicator key={uuid()} index={i} selected={index} />;
+      return (
+        <Indicator
+          key={uuid()}
+          index={i}
+          selected={index}
+          onPressIndicator={onPressIndicator}
+        />
+      );
     });
 
   return <StyledView deviceWidth={deviceWidth}>{Indicators}</StyledView>;
