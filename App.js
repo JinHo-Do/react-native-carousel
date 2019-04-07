@@ -29,7 +29,7 @@ export default class App extends Component {
           <CarouselImage url="https://cdn.pixabay.com/photo/2015/07/21/15/19/koala-854021_1280.jpg" />
           <CarouselImage url="https://cdn.pixabay.com/photo/2015/05/15/14/42/monkeys-768641_1280.jpg" />
           <CarouselImage url="https://cdn.pixabay.com/photo/2017/10/12/10/37/beautiful-2844189__480.jpg" />
-          <CarouselImage url="https://cdn.pixabay.com/photo/2018/07/16/07/11/flowers-3541330_1280.jpg" />
+          <CarouselImage url="https://cdn.pixabay.com/photo/2017/06/01/08/24/the-phantom-of-the-opera-2362804_1280.jpg" />
         </Carousel>
       </StyledView>
     );

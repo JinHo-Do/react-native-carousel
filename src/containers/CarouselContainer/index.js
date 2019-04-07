@@ -166,6 +166,22 @@ class index extends Component {
     });
   };
 
+  onPressIndicator = index => {
+    const { current } = this.scroll;
+
+    this.removeAutoSlide();
+
+    this.setState(
+      {
+        index,
+      },
+      () => {
+        const { index } = this.state;
+        current.scrollTo({ x: index * deviceWidth });
+      },
+    );
+  };
+
   render() {
     const {
       scroll,
@@ -173,6 +189,7 @@ class index extends Component {
       onPressPrevBtn,
       handleScroll,
       onScrollStart,
+      onPressIndicator,
     } = this;
     const { children, indicator, buttons } = this.props;
     const { length, index } = this.state;
@@ -208,6 +225,7 @@ class index extends Component {
             length={length}
             index={index}
             deviceWidth={deviceWidth}
+            onPressIndicator={onPressIndicator}
           />
         )}
       </StyledView>

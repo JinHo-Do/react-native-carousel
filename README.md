@@ -62,7 +62,7 @@ export default Something;
 ### Carousel Options
 
 ```javascript
-{/* Carousel 컴포넌트의 props로 다양한 옵션을 설정 할 수 있습니다. */}
+{/* Carousel 컴포넌트의 props로 다양한 옵션을 설정 할 수 있습니다. 인디케이터 터치 시 해당 페이지로 이동합니다. */}
 <Carousel auto speed={3000} indicator={false} buttons={false}>
   <CarouselImage url="이미지 주소">
 </CarouselImage>
