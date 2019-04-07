@@ -1,5 +1,6 @@
 import React, { Component, createRef } from 'react';
 import styled from 'styled-components/native';
+import PropTypes from 'prop-types';
 import { deviceWidth, deviceHeight } from '../../utils/dimensions';
 
 import {
@@ -28,9 +29,18 @@ const StyledScrollView = styled.ScrollView`
 `;
 
 class index extends Component {
+  static propTypes = {
+    indicator: PropTypes.bool,
+    buttons: PropTypes.bool,
+    auto: PropTypes.bool,
+    speed: PropTypes.number,
+  };
+
   static defaultProps = {
     indicator: true,
     buttons: true,
+    auto: false,
+    speed: 2000,
   };
 
   state = {
@@ -52,7 +62,7 @@ class index extends Component {
           length: children.length,
         },
         () => {
-          if (auto) {
+          if (children.length > 1 && auto) {
             this.handleAutoSlide(speed);
           }
         },
@@ -61,8 +71,13 @@ class index extends Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    const { index, length } = this.state;
-    return index !== nextState.index || length !== nextState.length;
+    const { index, length, isAutoSlide } = this.state;
+
+    return (
+      index !== nextState.index ||
+      length !== nextState.length ||
+      isAutoSlide !== nextState.isAutoSlide
+    );
   }
 
   componentWillUnmount() {
