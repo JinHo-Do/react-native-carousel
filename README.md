@@ -39,7 +39,7 @@ export default Something;
 
 ```javascript
 ...
-<Carousel>  {/* Carousel 컴포넌트로 감싸면 자식 컴포넌트는 모두 디바이스 넓이를 가지는 캐러셀의 아이템이 됩니다. */}
+<Carousel>  {/* Carousel 컴포넌트로 감싸면 자식 컴포넌트는 모두 캐러셀의 아이템이 됩니다. */}
   <CarouselView>  {/* CarouselView 컴포넌트는 디바이스 넓이를 가지는 View 컴포넌트입니다. */}
     <ViewExample />  {/* 이 컴포넌트는 단순히 예시를 위한 컴포넌트입니다. */}
   </CarouselView>
@@ -52,7 +52,7 @@ export default Something;
 ![ScreenShot](https://s3.ap-northeast-2.amazonaws.com/gurmbyh/CarouselImage.png)
 
 ```javascript
-<Carousel>  {/* Carousel 컴포넌트로 감싸면 자식 컴포넌트는 모두 디바이스 넓이를 가지는 캐러셀의 아이템이 됩니다. */}
+<Carousel>  {/* Carousel 컴포넌트로 감싸면 자식 컴포넌트는 모두 캐러셀의 아이템이 됩니다. */}
   <CarouselImage url="이미지 주소">  {/* CarouselView컴포넌트를 사용해도 되지만 단순히 이미지만 사용하려면
                                     CarouselImage컴포넌트가 더 간편합니다.
                                   */}
@@ -62,7 +62,7 @@ export default Something;
 ### Carousel Options
 
 ```javascript
-{/* Carousel 컴포넌트의 props로 다양한 옵션을 전달 할 수 있습니다. */}
+{/* Carousel 컴포넌트의 props로 다양한 옵션을 설정 할 수 있습니다. */}
 <Carousel auto speed={3000} indicator={false} buttons={false}>
   <CarouselImage url="이미지 주소">
 </CarouselImage>
