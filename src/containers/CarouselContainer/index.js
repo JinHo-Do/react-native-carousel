@@ -28,20 +28,35 @@ const StyledScrollView = styled.ScrollView`
 `;
 
 class index extends Component {
+  static defaultProps = {
+    indicator: true,
+    buttons: true,
+  };
+
   state = {
     length: 0,
     index: 0,
+    isAutoSlide: false,
   };
 
   scroll = createRef();
 
+  interval = null;
+
   componentDidMount() {
-    const { children } = this.props;
+    const { children, auto, speed } = this.props;
 
     if (children) {
-      this.setState({
-        length: children.length,
-      });
+      this.setState(
+        {
+          length: children.length,
+        },
+        () => {
+          if (auto) {
+            this.handleAutoSlide(speed);
+          }
+        },
+      );
     }
   }
 
@@ -50,9 +65,37 @@ class index extends Component {
     return index !== nextState.index || length !== nextState.length;
   }
 
+  componentWillUnmount() {
+    this.removeAutoSlide();
+  }
+
+  removeAutoSlide = () => {
+    const { isAutoSlide } = this.state;
+
+    if (isAutoSlide) {
+      clearInterval(this.interval);
+
+      this.setState({
+        isAutoSlide: false,
+      });
+    }
+  };
+
+  handleAutoSlide = (time = 2000) => {
+    this.setState({
+      isAutoSlide: true,
+    });
+
+    this.interval = setInterval(() => {
+      this.onPressNextBtn(null, false);
+    }, time);
+  };
+
   onPressPrevBtn = () => {
     const { current } = this.scroll;
     const { index, length } = this.state;
+
+    this.removeAutoSlide();
 
     if (index === 0) {
       this.setState(
@@ -76,9 +119,13 @@ class index extends Component {
     }
   };
 
-  onPressNextBtn = () => {
+  onPressNextBtn = (e, checkAuto = true) => {
     const { index, length } = this.state;
     const { current } = this.scroll;
+
+    if (checkAuto) {
+      this.removeAutoSlide();
+    }
 
     this.setState(
       {
@@ -91,6 +138,10 @@ class index extends Component {
     );
   };
 
+  onScrollStart = () => {
+    this.removeAutoSlide();
+  };
+
   handleScroll = e => {
     const scrolledValue = e.nativeEvent.contentOffset.x;
     const page = Math.round(scrolledValue / deviceWidth);
@@ -101,8 +152,14 @@ class index extends Component {
   };
 
   render() {
-    const { scroll, onPressNextBtn, onPressPrevBtn, handleScroll } = this;
-    const { children } = this.props;
+    const {
+      scroll,
+      onPressNextBtn,
+      onPressPrevBtn,
+      handleScroll,
+      onScrollStart,
+    } = this;
+    const { children, indicator, buttons } = this.props;
     const { length, index } = this.state;
 
     return (
@@ -113,10 +170,12 @@ class index extends Component {
           pagingEnabled
           showsHorizontalScrollIndicator={false}
           onMomentumScrollEnd={handleScroll}
+          onScrollBeginDrag={onScrollStart}
         >
           {children}
         </StyledScrollView>
-        {children && children.length && (
+
+        {children && children.length && buttons && (
           <>
             <CarouselPrevButton
               onPress={onPressPrevBtn}
@@ -128,11 +187,14 @@ class index extends Component {
             />
           </>
         )}
-        <CarouselIndicator
-          length={length}
-          index={index}
-          deviceWidth={deviceWidth}
-        />
+
+        {indicator && (
+          <CarouselIndicator
+            length={length}
+            index={index}
+            deviceWidth={deviceWidth}
+          />
+        )}
       </StyledView>
     );
   }
