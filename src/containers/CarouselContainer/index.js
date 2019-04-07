@@ -28,7 +28,7 @@ const StyledScrollView = styled.ScrollView`
   height: auto;
 `;
 
-class index extends Component {
+class Carousel extends Component {
   static propTypes = {
     indicator: PropTypes.bool,
     buttons: PropTypes.bool,
@@ -233,4 +233,4 @@ class index extends Component {
   }
 }
 
-export default index;
+export default Carousel;
