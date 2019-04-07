@@ -21,7 +21,7 @@ export default class App extends Component {
   render() {
     return (
       <StyledView>
-        <Carousel>
+        <Carousel auto speed={2000}>
           <CarouselView>
             <ViewExample />
           </CarouselView>
