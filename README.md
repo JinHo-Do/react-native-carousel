@@ -72,5 +72,5 @@ export default Something;
 | --------- | ------- | ------------- | --------------------------------------------- |
 | auto      | Boolean | false         | 자동 슬라이드의 여부를 정합니다.              |
 | speed     | Number  | 2000          | 자동으로 슬라이드 넘어가는 시간을 설정합니다. |
-| indicator | Boolean | false         | false 설정 시 인디케이터가 나타나지 않습니다. |
-| buttons   | Boolean | false         | false 설정 시 버튼이 나타나지 않습니다.       |
+| indicator | Boolean | true         | false 설정 시 인디케이터가 나타나지 않습니다. |
+| buttons   | Boolean | true         | false 설정 시 버튼이 나타나지 않습니다.       |
